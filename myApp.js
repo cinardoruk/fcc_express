@@ -3,6 +3,14 @@ require('dotenv').config()
 let express = require('express');
 let app = express();
 
+app.use('/public', express.static(__dirname + '/public'))
+
+app.use('/', (req, res, next) => {
+	message = `${req.method} ${req.path} - ${req.ip}`;
+	console.log(message);
+	next();
+});
+
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/views/index.html');
 });
@@ -20,9 +28,6 @@ app.get('/json', (req, res) => {
 	res.json({"message": response});
 
 });
-
-app.use('/public', express.static(__dirname + '/public'))
-
 
 
 
