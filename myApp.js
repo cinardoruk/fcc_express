@@ -60,6 +60,14 @@ app.get('/name',
 	}
 );
 
+app.post('/name',
+	(req, res) => {
+		let name_string = `${ req.body.first } ${ req.body.last }`
+		res.json({ name: name_string });
+	}
+);
+
+
 
 
 
